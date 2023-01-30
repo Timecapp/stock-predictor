@@ -1,0 +1,130 @@
+Q
+** How does the Prophet Algorithm differ from an LSTM?
+
+A
+- The Prophet algorithm and LSTM (Long Short Term Memory) are two different approaches to forecasting time series data. 
+
+- The Prophet algorithm is a non-parametric method for forecasting data that is based on trend and seasonality components,
+while LSTM is a type of recurrent neural network that can learn from long term temporal dependencies in the data.
+- Prophet relies on decomposing the data into trend and seasonality components, which it then uses to create a model 
+of the data. 
+
+- This model is used to forecast future values. LSTM, on the other hand, uses its recurrent neural network 
+architecture to learn the data over time and make predictions based on the patterns it has learned.
+
+- In general, the Prophet algorithm is better suited to data that follows a consistent trend or seasonal pattern, 
+while LSTM is better for data that has more complex patterns or long-term temporal dependencies.
+
+
+Q
+** Why does an LSTM have poor performance against ARIMA and Profit for Time Series?
+
+A
+- The main reason why an LSTM has poor performance against an ARIMA and Profit for time series is that 
+the LSTM model does not have the same structural limitations as the ARIMA model. 
+
+- This means that the LSTM model does not have the ability to learn from data with evidence of non-stationarity, 
+which is necessary for the ARIMA model to work effectively.
+
+- The ARIMA model has been found to have lower root mean squared errors (RMSEs) in 5/7 of the studied time series 
+compared to the LSTM model. This is due to its ability to handle non-stationarity and its ability to predict 
+future data points on a time scale. 
+
+- Additionally, gaussian filtering the dataset prior to creating the model 
+gave lower errors in every case, even when comparing the model results to the original, unfiltered data. 
+Gaussian filtering can also improve the model results on the original, un-filtered dataset by close to 100%.
+ 
+- In time series analysis, autoregressive integrated moving average (ARIMA) and long short - term memory (LSTM) models are used to predict future data points on a time scale.
+
+
+Q
+** What is exponential smoothing and why is it used in Time Series Forecasting?
+
+A
+- Exponential smoothing is a forecasting method for univariate time series data. 
+- This method produces forecasts that are weighted averages of past observations where the weights of 
+older observations exponentially decrease. 
+
+- Forms of exponential smoothing extend the analysis to model data with trends and seasonal components.
+
+- By adjusting parameter values, analysts can change how quickly older observations lose their 
+importance in the calculations. Consequently, analysts can tweak the relative importance of new 
+observations to older observations to meet their subject area’s requirements.
+
+- simple exponential smoothing is employed for univariate time series data that do not have a trend or seasonal cycle. 
+(also known as single exponential smoothing).
+
+- Simple exponential smoothing estimates only the level component. Think of the level component as the typical value or average. This method updates the level component for each observation. Because it models one component, it uses only one weighting parameter, alpha (α). This value determines the degree of smoothing by changing how quickly the level component adjusts to the most recent data.
+
+- Alpha values can range from 0 to 1, inclusive. 
+
+- Lower values produce smoother fitted lines because they give more weight to past observations, 
+averaging out fluctuations over time. Higher values create a more jagged line because they 
+weigh current data more highly, which reduces the degree of averaging by the older data.
+
+
+
+Q
+** What is stationarity? What is seasonality? Why Is Stationarity Important in Time Series Forecasting?
+
+A
+>> Stationarity is an important concept in the field of time series analysis with tremendous influence 
+on how the data is perceived and predicted. When forecasting or predicting the future, most time series models 
+assume that each point is independent of one another. 
+
+- The best indication of stationarity is when the graph of the time series resembles a sinusoidal shape, 
+which means that the graph looks like a sine function or shows repetitions after every fixed interval of time.
+
+- The best indication of this is when the dataset of past instances is stationary. 
+- This means that the mean, variance and autocorrelation structure do not change over time. 
+- It can be defined in precise mathematical terms, but for our purpose we mean a flat looking series, 
+without trend, constant variance over time, a constant autocorrelation structure over time and 
+no periodic fluctuations (seasonality). For practical purposes, stationarity can usually be determined 
+from a run sequence plot. We can difference the data. That is, given the series (Z_t),
+       
+       we create the new series
+         $$ Y_i = Z_i - Z_{ i-1} ,. $$
+
+- The differenced data will contain one less point than the original data. 
+- Although you can difference the data more than once, one difference is usually sufficient. 
+- If the data contain a trend, we can fit some type of curve to the data and then model the residuals from that fit. 
+- Since the purpose of the fit is to simply remove long term trend, a simple fit, 
+such as a straight line, is typically used. For non-constant variance, taking the logarithm or square root of 
+the series may stabilize the variance. For negative data, you can add a suitable constant to make all 
+the data positive before applying the transformation. This constant can then be subtracted from the 
+model to obtain predicted (i.e., the fitted) values and forecasts for future points.
+
+>> Seasonality: Seasonality is a characteristic of a time series in which the data experiences regular and predictable 
+changes that recur every calendar year. 
+
+- Any predictable fluctuation or pattern that recurs or repeats over a one-year period is said to be seasonal.
+
+- Companies that understand the seasonality of their businesses can predict and time inventories, 
+staffing, and other decisions to coincide with the expected seasonality of the associated activities, 
+thereby reducing costs and increasing revenue.
+
+
+>> Stationarity is important in time series forecasting because it allows for the use of mathematical transformations
+to render a time series approximately stationary. This makes it easier to predict its statistical properties 
+(mean, variance) as they remain fixed. The trend and seasonal components remain unchanged, and the 
+analysis is then mainly concentrated on forecasting the irregular component. 
+
+- There are multiple methods for making a time series stationary, which include detrending and first differencing.
+
+Q
+** How is seasonality different from cyclicality? (Fill in the blanks)
+
+A
+SEASONALITY is predictable, whereas CYCLICALITY is not.
+
+REFERENCES & ACKNOWLEDGEMENTS
+- Time Series Forecasting with LSTMs and Prophet | by Maximilian ...
+https://towardsdatascience.com/time-series-forecasting-with-lstms-and-prophet-predict-your-email-workload-48bf9cdb1580
+- ARIMA vs Prophet vs LSTM for Time Series Prediction - neptune.ai
+https://neptune.ai/blog/arima-vs-prophet-vs-lstm
+- An Overview of Autocorrelation, Seasonality and Stationarity in Time Series Data
+BY RITHWIK CHHUGANI https://analyticsindiamag.com/an-overview-of-autocorrelation-seasonality-and-stationarity-in-time-series-data/
+- Time Series Forecasting: ARIMA vs LSTM vs PROPHET | by Mauro  
+- Frost, J. Exponential Smoothing for Time Series Forecasting https://statisticsbyjim.com/time-series/exponential-smoothing-time-series-forecasting/
+https://medium.com/analytics-vidhya/time-series-forecasting-arima-vs-lstm-vs-prophet-62241c203a3b
+- William Kenton, 202 Seasonality: What It Means in Business and Economics, Examples https://www.investopedia.com/terms/s/seasonality.asp
