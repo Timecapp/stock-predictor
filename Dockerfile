@@ -12,3 +12,5 @@ RUN pip install --no-cache-dir -U pip
 RUN pip install --no-cache-dir -U cython
 RUN pip install --no-cache-dir -U numpy
 RUN pip install --no-cache-dir -U pystan
+
+COPY  requirements.txt /app
